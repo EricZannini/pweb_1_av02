@@ -88,10 +88,10 @@ function getFormValue($data, $field)
         }
 
         .glass-effect {
-            background: #1a1a1a;
-            border: 1px solid var(--gold);
-            border-radius: 12px;
-            box-shadow: 0 0 12px rgba(197, 160, 89, 0.15);
+            background: rgba(0, 0, 0, 0.4);
+            border: none;
+            border-bottom: 2px solid var(--gold);
+            border-radius: 0;
             padding: 20px;
             margin-top: 20px;
         }
@@ -102,7 +102,8 @@ function getFormValue($data, $field)
         }
         a .glass-effect:hover {
             transform: translateY(-5px);
-            box-shadow: 0 0 22px rgba(197, 160, 89, 0.35), 0 10px 20px rgba(0,0,0,0.5);
+            border-bottom-color: var(--gold);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
         }
 
         /* detalhe lateral dourado nas seções — do TAV01 */

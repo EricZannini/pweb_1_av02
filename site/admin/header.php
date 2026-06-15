@@ -88,19 +88,12 @@ function getFormValue($data, $field)
         }
 
         .glass-effect {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0));
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            border-radius: 32px;
-            -webkit-backdrop-filter: blur(20px);
-            backdrop-filter: blur(20px);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            background: #1a1a1a;
+            border: 1px solid var(--gold);
+            border-radius: 12px;
+            box-shadow: 0 0 12px rgba(197, 160, 89, 0.15);
             padding: 20px;
             margin-top: 20px;
-        }
-
-        /* borda dourada no header — do TAV01 */
-        .blog-header {
-            border-bottom: 2px solid var(--gold);
         }
 
         /* hover nos cards — do TAV01 */
@@ -109,8 +102,7 @@ function getFormValue($data, $field)
         }
         a .glass-effect:hover {
             transform: translateY(-5px);
-            border-color: var(--gold);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            box-shadow: 0 0 22px rgba(197, 160, 89, 0.35), 0 10px 20px rgba(0,0,0,0.5);
         }
 
         /* detalhe lateral dourado nas seções — do TAV01 */
@@ -123,59 +115,11 @@ function getFormValue($data, $field)
 
         .table { --bs-table-bg: transparent; }
 
-        /* vinil girando no logo */
-        @keyframes spin-vinyl {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-        .vinyl-spin {
-            display: inline-block;
-            animation: spin-vinyl 3s linear infinite;
-        }
-        .vinyl-spin:hover {
-            animation-play-state: paused;
-        }
-
-        /* barras de equalizador */
-        @keyframes eq-bar {
-            0%, 100% { height: 6px; }
-            50% { height: 20px; }
-        }
-        .equalizer {
-            display: inline-flex;
-            align-items: flex-end;
-            gap: 3px;
-            height: 20px;
-            vertical-align: middle;
-            margin-left: 8px;
-        }
-        .equalizer span {
-            width: 4px;
-            background: var(--gold);
-            border-radius: 2px;
-            animation: eq-bar 0.8s ease infinite;
-        }
-        .equalizer span:nth-child(2) { animation-delay: 0.15s; }
-        .equalizer span:nth-child(3) { animation-delay: 0.3s; }
-        .equalizer span:nth-child(4) { animation-delay: 0.1s; }
-
-        /* grain/ruído vintage sobre o fundo */
-        body::after {
-            content: '';
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            opacity: 0.04;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-            background-size: 150px;
-            z-index: 9999;
-        }
-
-        /* glow dourado nos cards */
+        /* glow dourado nos cards — do TAV01 */
         a .glass-effect:hover {
             transform: translateY(-5px);
             border-color: var(--gold);
-            box-shadow: 0 0 18px rgba(197, 160, 89, 0.4), 0 10px 20px rgba(0,0,0,0.5);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
         }
     </style>
 </head>
@@ -190,11 +134,8 @@ function getFormValue($data, $field)
 
             <div class="col-4">
                 <a class="link-secondary text-decoration-none" href="/pweb_1_av02/site/admin/index.php">
-                    <span class="vinyl-spin"><i class="fa-solid fa-record-vinyl" style="color:#c5a059"></i></span>
-                    <strong><span style="color:#c5a059"> Vinyl</span>Store</strong> Admin
-                    <span class="equalizer">
-                        <span></span><span></span><span></span><span></span>
-                    </span>
+                    <i class="fa-solid fa-record-vinyl me-1" style="color:#c5a059"></i>
+                    <strong><span style="color:#c5a059">Vinyl</span>Store</strong> Admin
                 </a>
             </div>
 

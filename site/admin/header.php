@@ -61,13 +61,30 @@ function getFormValue($data, $field)
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 
+    <!-- fonte do TAV01 -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Special+Elite&display=swap" rel="stylesheet">
+
     <style>
         /* inspiração para o CSS: https://pin.it/6VtQZIxjq */
         /* desenvolvedor: @lucaslab.dev */
+
+        /* variáveis reutilizadas do TAV01 */
+        :root {
+            --gold: #c5a059;
+            --dark-bg: #121212;
+            --card-bg: #1e1e1e;
+        }
+
         body {
-            background: radial-gradient(ellipse at top, #1a0533 0%, #0d0d0d 70%);
-            min-height: 100vh;
-            background-attachment: fixed;
+            background-color: var(--dark-bg);
+            background-image: url('https://www.transparenttextures.com/patterns/dark-matter.png');
+            color: #d4d4d4;
+            font-family: 'Special Elite', cursive;
+        }
+
+        h1, h2, h3, h4, h5, strong {
+            font-family: 'Cinzel', serif;
+            letter-spacing: 1px;
         }
 
         .glass-effect {
@@ -81,22 +98,28 @@ function getFormValue($data, $field)
             margin-top: 20px;
         }
 
-        .btn-imagem {
-            background: transparent;
-            border: none;
-            padding: 0;
-            box-shadow: none;
+        /* borda dourada no header — do TAV01 */
+        .blog-header {
+            border-bottom: 2px solid var(--gold);
         }
 
-        .arredondado {
-            border-radius: 32px;
+        /* hover nos cards — do TAV01 */
+        a .glass-effect {
+            transition: 0.4s;
+        }
+        a .glass-effect:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
         }
 
-        .dropdown-menu .dropdown-item:hover,
-        .dropdown-menu .dropdown-item:focus {
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
+        /* detalhe lateral dourado nas seções — do TAV01 */
+        .glass-effect h4 {
+            border-left: 4px solid var(--gold);
+            padding-left: 12px;
         }
+
+        .arredondado { border-radius: 32px; }
 
         .table { --bs-table-bg: transparent; }
     </style>
@@ -112,8 +135,8 @@ function getFormValue($data, $field)
 
             <div class="col-4">
                 <a class="link-secondary text-decoration-none" href="/pweb_1_av02/site/admin/index.php">
-                    <i class="fa-solid fa-record-vinyl me-1" style="color:#9b5de5"></i>
-                    <strong><span style="color:#9b5de5">Vinyl</span>Store</strong> Admin
+                    <i class="fa-solid fa-record-vinyl me-1" style="color:#c5a059"></i>
+                    <strong><span style="color:#c5a059">Vinyl</span>Store</strong> Admin
                 </a>
             </div>
 

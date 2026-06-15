@@ -20,7 +20,7 @@ $totalUsuarios = count((new db('usuarios'))->all());
         <div class="col-md-3">
             <a href="/pweb_1_av02/site/admin/disco/DiscoList.php" class="text-decoration-none">
                 <div class="glass-effect text-center">
-                    <i class="fa-solid fa-record-vinyl fa-2x mb-2" style="color:#9b5de5"></i>
+                    <i class="fa-solid fa-record-vinyl fa-2x mb-2" style="color:#c5a059"></i>
                     <h2 class="fw-bold"><?= $totalDiscos ?></h2>
                     <p class="text-white-50 mb-0">Discos</p>
                 </div>

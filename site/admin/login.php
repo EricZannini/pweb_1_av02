@@ -35,8 +35,8 @@ if (!empty($_POST)) {
     <div class="col-md-4">
         <div class="glass-effect">
             <h4 class="text-center mb-4">
-                <i class="fa-solid fa-record-vinyl me-2" style="color:#9b5de5"></i>
-                <strong><span style="color:#9b5de5">Vinyl</span>Store</strong> Admin
+                <i class="fa-solid fa-record-vinyl me-2" style="color:#c5a059"></i>
+                <strong><span style="color:#c5a059">Vinyl</span>Store</strong> Admin
             </h4>
 
             <?php if (!empty($error)): ?>

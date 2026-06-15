@@ -1,8 +1,9 @@
 
     </main>
 
-    <footer class="blog-footer glass-effect" style="text-align: center; margin-top: 1rem;">
-        <p class="mb-0">Todos os direitos reservados <strong><span style="color:#9b5de5">Vinyl</span>Store</strong> Admin</p>
+    <!-- borda dourada no footer — do TAV01 -->
+    <footer class="blog-footer glass-effect" style="text-align: center; margin-top: 1rem; border-top: 2px solid var(--gold);">
+        <p class="mb-0">Todos os direitos reservados <strong><span style="color:#c5a059">Vinyl</span>Store</strong> Admin</p>
     </footer>
 
 </div>

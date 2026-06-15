@@ -40,7 +40,7 @@ if (!empty($_POST)) {
 
 <div class="glass-effect">
     <h4 class="fw-bold mb-4">
-        <i class="fa-solid fa-record-vinyl me-2" style="color:#9b5de5"></i>
+        <i class="fa-solid fa-record-vinyl me-2" style="color:#c5a059"></i>
         <?= empty($_GET['id']) ? 'Novo Disco' : 'Editar Disco' ?>
     </h4>
 

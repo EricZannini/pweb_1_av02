@@ -21,7 +21,7 @@ if (isset($_POST['buscar'])) {
 ?>
 
 <div class="d-flex justify-content-between align-items-center mb-4">
-    <h4 class="fw-bold mb-0"><i class="fa-solid fa-record-vinyl me-2" style="color:#9b5de5"></i>Discos</h4>
+    <h4 class="fw-bold mb-0"><i class="fa-solid fa-record-vinyl me-2" style="color:#c5a059"></i>Discos</h4>
     <a href="DiscoForm.php" class="btn btn-primary">
         <i class="fa-solid fa-plus me-1"></i>Novo Disco
     </a>

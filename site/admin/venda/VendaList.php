@@ -5,23 +5,20 @@ include_once '../database/db.class.php';
 
 $db = new db('vendas');
 
-// deleta
 if (!empty($_GET['delete'])) {
     $db->destroy($_GET['delete']);
     $msgDelete = 'Venda excluída com sucesso!';
 }
 
-// pega tudo
 $vendas = $db->all();
 
-// pesquisa
 if (isset($_POST['buscar'])) {
     $vendas = $db->search(['tipo' => $_POST['tipo'], 'valor' => $_POST['valor']]);
 }
 ?>
 
 <div class="d-flex justify-content-between align-items-center mb-4">
-    <h4 class="fw-bold mb-0"><i class="fa-solid fa-cart-shopping me-2" style="color:#4cc9f0"></i>Vendas</h4>
+    <h4 class="fw-bold mb-0"><i class="fa-solid fa-cart-shopping me-2" style="color:#c5a059"></i>Vendas</h4>
     <a href="VendaForm.php" class="btn btn-primary">
         <i class="fa-solid fa-plus me-1"></i>Nova Venda
     </a>
@@ -53,6 +50,7 @@ if (isset($_POST['buscar'])) {
                 <th>Cliente</th>
                 <th>Disco</th>
                 <th>Qtd</th>
+                <th>Total</th>
                 <th>Data</th>
                 <th>Ações</th>
             </tr>
@@ -61,13 +59,13 @@ if (isset($_POST['buscar'])) {
             <?php if (empty($vendas)): ?>
                 <tr><td colspan="6" class="text-center text-muted py-4">Nenhuma venda encontrada.</td></tr>
             <?php else: ?>
-                <?php // mostra cada linha na tabela ?>
                 <?php foreach ($vendas as $venda): ?>
                 <tr>
                     <td class="text-muted small"><?= $venda->id ?></td>
                     <td><?= $venda->cliente_nome ?></td>
                     <td><?= $venda->disco_titulo ?></td>
                     <td><span class="badge bg-secondary"><?= $venda->quantidade ?></span></td>
+                    <td>R$ <?= number_format($venda->valor_total, 2, ',', '.') ?></td>
                     <td><?= date('d/m/Y', strtotime($venda->data_venda)) ?></td>
                     <td>
                         <a href="VendaForm.php?id=<?= $venda->id ?>" class="btn btn-sm btn-outline-primary me-1">

@@ -5,16 +5,13 @@ include_once '../database/db.class.php';
 
 $db = new db('usuarios');
 
-// deleta
 if (!empty($_GET['delete'])) {
     $db->destroy($_GET['delete']);
     $msgDelete = 'Usuário excluído com sucesso!';
 }
 
-// pega tudo
 $usuarios = $db->all();
 
-// pesquisa
 if (isset($_POST['buscar'])) {
     $usuarios = $db->search(['tipo' => $_POST['tipo'], 'valor' => $_POST['valor']]);
 }
@@ -62,7 +59,6 @@ if (isset($_POST['buscar'])) {
             <?php if (empty($usuarios)): ?>
                 <tr><td colspan="6" class="text-center text-muted py-4">Nenhum usuário encontrado.</td></tr>
             <?php else: ?>
-                <?php // mostra cada linha na tabela ?>
                 <?php foreach ($usuarios as $usuario): ?>
                 <tr>
                     <td class="text-muted small"><?= $usuario->id ?></td>

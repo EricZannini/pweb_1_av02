@@ -7,18 +7,15 @@ $db = new db('artistas');
 $errors = [];
 $data = null;
 
-// novo ou edição
 if (!empty($_GET['id'])) {
     $data = $db->find($_GET['id']);
 }
 
 if (!empty($_POST)) {
-    // valida
     if (empty($_POST['nome'])) $errors[] = '<li>Nome é obrigatório.</li>';
     if (empty($_POST['nacionalidade'])) $errors[] = '<li>Nacionalidade é obrigatória.</li>';
     if (empty($_POST['estilo_musical'])) $errors[] = '<li>Estilo musical é obrigatório.</li>';
 
-    // salva ou atualiza
     if (empty($errors)) {
         try {
             if (empty($_POST['id'])) {
@@ -38,14 +35,13 @@ if (!empty($_POST)) {
 
 <div class="glass-effect">
     <h4 class="fw-bold mb-4">
-        <i class="fa-solid fa-music me-2" style="color:#4895ef"></i>
+        <i class="fa-solid fa-music me-2" style="color:#c5a059"></i>
         <?= empty($_GET['id']) ? 'Novo Artista' : 'Editar Artista' ?>
     </h4>
 
     <?php showValidationError($errors); ?>
 
     <form method="POST">
-        <?php // id escondido — define se vai cadastrar ou editar ?>
         <input type="hidden" name="id" value="<?= getFormValue($data, 'id') ?>">
 
         <div class="mb-3">

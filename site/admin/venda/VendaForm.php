@@ -7,19 +7,16 @@ $db = new db('vendas');
 $errors = [];
 $data = null;
 
-// novo ou edição
 if (!empty($_GET['id'])) {
     $data = $db->find($_GET['id']);
 }
 
 if (!empty($_POST)) {
-    // valida
     if (empty($_POST['cliente_nome'])) $errors[] = '<li>Nome do cliente é obrigatório.</li>';
     if (empty($_POST['disco_titulo'])) $errors[] = '<li>Título do disco é obrigatório.</li>';
     if (empty($_POST['quantidade'])) $errors[] = '<li>Quantidade é obrigatória.</li>';
     if (empty($_POST['data_venda'])) $errors[] = '<li>Data é obrigatória.</li>';
 
-    // salva ou atualiza
     if (empty($errors)) {
         try {
             if (empty($_POST['id'])) {
@@ -39,14 +36,13 @@ if (!empty($_POST)) {
 
 <div class="glass-effect">
     <h4 class="fw-bold mb-4">
-        <i class="fa-solid fa-cart-shopping me-2" style="color:#4cc9f0"></i>
+        <i class="fa-solid fa-cart-shopping me-2" style="color:#c5a059"></i>
         <?= empty($_GET['id']) ? 'Nova Venda' : 'Editar Venda' ?>
     </h4>
 
     <?php showValidationError($errors); ?>
 
     <form method="POST">
-        <?php // id escondido — define se vai cadastrar ou editar ?>
         <input type="hidden" name="id" value="<?= getFormValue($data, 'id') ?>">
 
         <div class="mb-3">
@@ -60,17 +56,37 @@ if (!empty($_POST)) {
                    value="<?= getFormValue($data, 'disco_titulo') ?>">
         </div>
         <div class="row">
-            <div class="col-md-6 mb-3">
+            <div class="col-md-4 mb-3">
                 <label class="form-label">Quantidade</label>
-                <input type="number" name="quantidade" class="form-control" min="1"
-                       value="<?= getFormValue($data, 'quantidade') ?>">
+                <input type="number" name="quantidade" id="quantidade" class="form-control" min="1"
+                       value="<?= getFormValue($data, 'quantidade') ?>" onchange="calcTotal()">
             </div>
-            <div class="col-md-6 mb-3">
-                <label class="form-label">Data da Venda</label>
-                <input type="date" name="data_venda" class="form-control"
-                       value="<?= getFormValue($data, 'data_venda') ?>">
+            <div class="col-md-4 mb-3">
+                <label class="form-label">Preço Unitário (R$)</label>
+                <input type="number" name="preco_unitario" id="preco_unitario" step="0.01" class="form-control"
+                       value="<?= getFormValue($data, 'preco_unitario') ?>" onchange="calcTotal()">
+            </div>
+            <div class="col-md-4 mb-3">
+                <label class="form-label">Total</label>
+                <input type="number" name="valor_total" id="valor_total" step="0.01" class="form-control"
+                       value="<?= getFormValue($data, 'valor_total') ?>" readonly>
             </div>
         </div>
+        <div class="mb-3">
+            <label class="form-label">Data da Venda</label>
+            <input type="date" name="data_venda" class="form-control"
+                   value="<?= getFormValue($data, 'data_venda') ?>">
+        </div>
+
+        <script>
+        function calcTotal() {
+            var qtd = document.getElementById('quantidade').value;
+            var preco = document.getElementById('preco_unitario').value;
+            if (qtd && preco) {
+                document.getElementById('valor_total').value = (qtd * preco).toFixed(2);
+            }
+        }
+        </script>
 
         <div class="d-flex gap-2">
             <button type="submit" class="btn btn-primary">

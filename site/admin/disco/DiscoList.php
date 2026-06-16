@@ -5,18 +5,24 @@ include_once '../database/db.class.php';
 
 $db = new db('discos');
 
-// deleta
 if (!empty($_GET['delete'])) {
     $db->destroy($_GET['delete']);
     $msgDelete = 'Disco excluído com sucesso!';
 }
 
-// pega tudo
 $discos = $db->all();
 
-// pesquisa
 if (isset($_POST['buscar'])) {
     $discos = $db->search(['tipo' => $_POST['tipo'], 'valor' => $_POST['valor']]);
+}
+
+if (!empty($_GET['genero'])) {
+    $discos = $db->search(['tipo' => 'genero', 'valor' => $_GET['genero']]);
+}
+
+$generos = [];
+foreach ($db->all() as $d) {
+    if (!in_array($d->genero, $generos)) $generos[] = $d->genero;
 }
 ?>
 
@@ -29,6 +35,18 @@ if (isset($_POST['buscar'])) {
 
 <?php if (!empty($msgDelete)): ?>
     <div class="alert alert-success"><?= $msgDelete ?></div>
+<?php endif; ?>
+
+<?php if (!empty($generos)): ?>
+<div class="mb-3 d-flex gap-2 flex-wrap">
+    <a href="DiscoList.php" class="btn btn-sm btn-outline-secondary">Todos</a>
+    <?php foreach ($generos as $g): ?>
+        <a href="?genero=<?= urlencode($g) ?>"
+           class="btn btn-sm <?= ($_GET['genero'] ?? '') === $g ? 'btn-secondary' : 'btn-outline-secondary' ?>">
+            <?= $g ?>
+        </a>
+    <?php endforeach; ?>
+</div>
 <?php endif; ?>
 
 <form method="POST" class="glass-effect p-3 mb-4 d-flex gap-2 flex-wrap">
@@ -56,14 +74,14 @@ if (isset($_POST['buscar'])) {
                 <th>Gênero</th>
                 <th>Preço</th>
                 <th>Ano</th>
+                <th>Estoque</th>
                 <th>Ações</th>
             </tr>
         </thead>
         <tbody>
             <?php if (empty($discos)): ?>
-                <tr><td colspan="7" class="text-center text-muted py-4">Nenhum disco encontrado.</td></tr>
+                <tr><td colspan="8" class="text-center text-muted py-4">Nenhum disco encontrado.</td></tr>
             <?php else: ?>
-                <?php // mostra cada linha na tabela ?>
                 <?php foreach ($discos as $disco): ?>
                 <tr>
                     <td class="text-muted small"><?= $disco->id ?></td>
@@ -72,6 +90,13 @@ if (isset($_POST['buscar'])) {
                     <td><?= $disco->genero ?></td>
                     <td>R$ <?= number_format($disco->preco, 2, ',', '.') ?></td>
                     <td><?= $disco->ano_lancamento ?></td>
+                    <td>
+                        <?php if ($disco->estoque > 0): ?>
+                            <span class="badge" style="background:#2d6a2d"><?= $disco->estoque ?></span>
+                        <?php else: ?>
+                            <span class="badge bg-danger">0</span>
+                        <?php endif; ?>
+                    </td>
                     <td>
                         <a href="DiscoForm.php?id=<?= $disco->id ?>" class="btn btn-sm btn-outline-primary me-1">
                             <i class="fa-solid fa-pen-to-square"></i>

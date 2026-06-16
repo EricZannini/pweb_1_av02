@@ -8,20 +8,17 @@ $errors = [];
 $data = null;
 $editando = false;
 
-// novo ou edição
 if (!empty($_GET['id'])) {
     $data = $db->find($_GET['id']);
     $editando = true;
 }
 
 if (!empty($_POST)) {
-    // valida
     if (empty($_POST['nome'])) $errors[] = '<li>Nome é obrigatório.</li>';
     if (empty($_POST['email'])) $errors[] = '<li>E-mail é obrigatório.</li>';
     if (empty($_POST['login'])) $errors[] = '<li>Login é obrigatório.</li>';
     if (!$editando && empty($_POST['senha'])) $errors[] = '<li>Senha é obrigatória.</li>';
 
-    // salva com senha criptografada
     if (empty($errors)) {
         if (!$editando) {
             $_POST['senha'] = password_hash($_POST['senha'], PASSWORD_DEFAULT);
@@ -34,7 +31,6 @@ if (!empty($_POST)) {
                 'email' => $_POST['email'],
                 'login' => $_POST['login'],
             ];
-            // edição: só atualiza a senha se preenchida
             if (!empty($_POST['senha'])) {
                 $dados['senha'] = password_hash($_POST['senha'], PASSWORD_DEFAULT);
             }
@@ -56,7 +52,6 @@ if (!empty($_POST)) {
     <?php showValidationError($errors); ?>
 
     <form method="POST">
-        <?php // id escondido — define se vai cadastrar ou editar ?>
         <input type="hidden" name="id" value="<?= getFormValue($data, 'id') ?>">
 
         <div class="mb-3">

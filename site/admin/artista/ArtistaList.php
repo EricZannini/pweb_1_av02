@@ -5,23 +5,20 @@ include_once '../database/db.class.php';
 
 $db = new db('artistas');
 
-// deleta
 if (!empty($_GET['delete'])) {
     $db->destroy($_GET['delete']);
     $msgDelete = 'Artista excluído com sucesso!';
 }
 
-// pega tudo
 $artistas = $db->all();
 
-// pesquisa
 if (isset($_POST['buscar'])) {
     $artistas = $db->search(['tipo' => $_POST['tipo'], 'valor' => $_POST['valor']]);
 }
 ?>
 
 <div class="d-flex justify-content-between align-items-center mb-4">
-    <h4 class="fw-bold mb-0"><i class="fa-solid fa-music me-2" style="color:#4895ef"></i>Artistas</h4>
+    <h4 class="fw-bold mb-0"><i class="fa-solid fa-music me-2" style="color:#c5a059"></i>Artistas</h4>
     <a href="ArtistaForm.php" class="btn btn-primary">
         <i class="fa-solid fa-plus me-1"></i>Novo Artista
     </a>
@@ -61,7 +58,6 @@ if (isset($_POST['buscar'])) {
             <?php if (empty($artistas)): ?>
                 <tr><td colspan="5" class="text-center text-muted py-4">Nenhum artista encontrado.</td></tr>
             <?php else: ?>
-                <?php // mostra cada linha na tabela ?>
                 <?php foreach ($artistas as $artista): ?>
                 <tr>
                     <td class="text-muted small"><?= $artista->id ?></td>

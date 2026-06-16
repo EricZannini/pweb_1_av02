@@ -10,6 +10,7 @@ CREATE TABLE IF NOT EXISTS `discos` (
   `genero` varchar(80) NOT NULL,
   `preco` decimal(6,2) NOT NULL,
   `ano_lancamento` year NOT NULL,
+  `estoque` int DEFAULT 0,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -26,6 +27,8 @@ CREATE TABLE IF NOT EXISTS `vendas` (
   `cliente_nome` varchar(100) NOT NULL,
   `disco_titulo` varchar(150) NOT NULL,
   `quantidade` int NOT NULL,
+  `preco_unitario` decimal(10,2) DEFAULT 0.00,
+  `valor_total` decimal(10,2) DEFAULT 0.00,
   `data_venda` date NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

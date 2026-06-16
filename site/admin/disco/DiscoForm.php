@@ -7,20 +7,17 @@ $db = new db('discos');
 $errors = [];
 $data = null;
 
-// novo ou edição
 if (!empty($_GET['id'])) {
     $data = $db->find($_GET['id']);
 }
 
 if (!empty($_POST)) {
-    // valida
     if (empty($_POST['titulo'])) $errors[] = '<li>Título é obrigatório.</li>';
     if (empty($_POST['artista'])) $errors[] = '<li>Artista é obrigatório.</li>';
     if (empty($_POST['genero'])) $errors[] = '<li>Gênero é obrigatório.</li>';
     if (empty($_POST['preco'])) $errors[] = '<li>Preço é obrigatório.</li>';
     if (empty($_POST['ano_lancamento'])) $errors[] = '<li>Ano é obrigatório.</li>';
 
-    // salva ou atualiza
     if (empty($errors)) {
         try {
             if (empty($_POST['id'])) {
@@ -47,7 +44,6 @@ if (!empty($_POST)) {
     <?php showValidationError($errors); ?>
 
     <form method="POST">
-        <?php // id escondido — define se vai cadastrar ou editar ?>
         <input type="hidden" name="id" value="<?= getFormValue($data, 'id') ?>">
 
         <div class="mb-3">
@@ -77,6 +73,12 @@ if (!empty($_POST)) {
                        min="1900" max="2099"
                        value="<?= getFormValue($data, 'ano_lancamento') ?>">
             </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Estoque</label>
+            <input type="number" name="estoque" class="form-control" min="0"
+                   value="<?= getFormValue($data, 'estoque') ?>">
         </div>
 
         <div class="d-flex gap-2">

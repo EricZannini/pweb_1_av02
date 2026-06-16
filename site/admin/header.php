@@ -61,23 +61,22 @@ function getFormValue($data, $field)
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- fonte do TAV01 -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Special+Elite&display=swap" rel="stylesheet">
 
     <style>
-        /* inspiração para o CSS: https://pin.it/6VtQZIxjq */
-        /* desenvolvedor: @lucaslab.dev */
-
-        /* variáveis reutilizadas do TAV01 */
         :root {
-            --gold: #c5a059;
+            --gothic-red: #5a0000;
+            --gothic-gold: #c5a059;
             --dark-bg: #121212;
             --card-bg: #1e1e1e;
         }
 
         body {
             background-color: var(--dark-bg);
-            background-image: url('https://www.transparenttextures.com/patterns/dark-matter.png');
+            background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/pweb_1_av02/site/admin/background_vinyl.webp');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             color: #d4d4d4;
             font-family: 'Special Elite', cursive;
         }
@@ -88,43 +87,45 @@ function getFormValue($data, $field)
         }
 
         .glass-effect {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0));
-            border: none;
-            border-bottom: 2px solid var(--gold);
-            border-radius: 0;
-            -webkit-backdrop-filter: blur(20px);
-            backdrop-filter: blur(20px);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+            background-color: var(--card-bg);
+            border: 1px solid #333;
+            border-left: 4px solid var(--gothic-red);
             padding: 20px;
             margin-top: 20px;
-        }
-
-        /* hover nos cards — do TAV01 */
-        a .glass-effect {
             transition: 0.4s;
         }
+
         a .glass-effect:hover {
             transform: translateY(-5px);
-            border-bottom-color: var(--gold);
+            border-left-color: var(--gothic-gold);
             box-shadow: 0 10px 20px rgba(0,0,0,0.5);
         }
 
-        /* detalhe lateral dourado nas seções — do TAV01 */
         .glass-effect h4 {
-            border-left: 4px solid var(--gold);
+            border-left: 5px solid var(--gothic-red);
             padding-left: 12px;
         }
 
-        .arredondado { border-radius: 32px; }
+        header { border-bottom: 2px solid var(--gothic-gold); }
+        footer { border-top: 2px solid var(--gothic-gold); margin-top: 1rem; }
+
+        .nav-scroller .nav a {
+            color: #d4d4d4;
+            text-decoration: none;
+            font-family: 'Cinzel', serif;
+            font-size: 13px;
+            letter-spacing: 1px;
+            padding-bottom: 4px;
+            border-bottom: 2px solid transparent;
+            transition: 0.3s;
+        }
+
+        .nav-scroller .nav a:hover {
+            color: var(--gothic-gold);
+            border-bottom-color: var(--gothic-gold);
+        }
 
         .table { --bs-table-bg: transparent; }
-
-        /* glow dourado nos cards — do TAV01 */
-        a .glass-effect:hover {
-            transform: translateY(-5px);
-            border-color: var(--gold);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-        }
     </style>
 </head>
 <body>
@@ -133,7 +134,7 @@ function getFormValue($data, $field)
 
     <?php // esconde o cabeçalho nas páginas de login e cadastro ?>
     <?php if (empty($paginaAuth)): ?>
-    <header class="blog-header glass-effect">
+    <header class="py-3">
         <div class="row d-flex justify-content align-items-center">
 
             <div class="col-4">
@@ -146,14 +147,14 @@ function getFormValue($data, $field)
             <div class="col-4 text-center">
                 <?php if (isset($_SESSION['usuario_nome'])): ?>
                     <span class="text-white-50 small">
-                        Olá, <?= $_SESSION['usuario_nome'] ?>
+                        Olá, <a href="/pweb_1_av02/site/admin/perfil.php" style="color:#c5a059; text-decoration:none;"><?= $_SESSION['usuario_nome'] ?></a>
                     </span>
                 <?php endif; ?>
             </div>
 
             <div class="col-4 text-end">
                 <?php if (isset($_SESSION['usuario_id'])): ?>
-                    <a class="btn btn-sm btn-outline-secondary glass-effect"
+                    <a class="btn btn-sm btn-outline-secondary"
                        href="/pweb_1_av02/site/admin/logout.php">
                         <i class="fa-solid fa-right-from-bracket me-1"></i>Sair
                     </a>
@@ -169,28 +170,23 @@ function getFormValue($data, $field)
     <div class="nav-scroller py-1 mb-2">
         <nav class="nav flex justify-content-between">
 
-            <a href="/pweb_1_av02/site/admin/index.php"
-               class="btn glass-effect text-white">
-                <i class="fa-solid fa-gauge-high me-1"></i>Dashboard
+            <a href="/pweb_1_av02/site/admin/index.php">
+                <i class="fa-solid fa-compact-disc me-1"></i>Dashboard
             </a>
 
-            <a href="/pweb_1_av02/site/admin/disco/DiscoList.php"
-               class="btn glass-effect text-white">
+            <a href="/pweb_1_av02/site/admin/disco/DiscoList.php">
                 <i class="fa-solid fa-record-vinyl me-1"></i>Discos
             </a>
 
-            <a href="/pweb_1_av02/site/admin/artista/ArtistaList.php"
-               class="btn glass-effect text-white">
+            <a href="/pweb_1_av02/site/admin/artista/ArtistaList.php">
                 <i class="fa-solid fa-music me-1"></i>Artistas
             </a>
 
-            <a href="/pweb_1_av02/site/admin/venda/VendaList.php"
-               class="btn glass-effect text-white">
+            <a href="/pweb_1_av02/site/admin/venda/VendaList.php">
                 <i class="fa-solid fa-cart-shopping me-1"></i>Vendas
             </a>
 
-            <a href="/pweb_1_av02/site/admin/usuario/UsuarioList.php"
-               class="btn glass-effect text-white">
+            <a href="/pweb_1_av02/site/admin/usuario/UsuarioList.php">
                 <i class="fa-solid fa-users me-1"></i>Usuários
             </a>
 

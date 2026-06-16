@@ -88,10 +88,13 @@ function getFormValue($data, $field)
         }
 
         .glass-effect {
-            background: rgba(0, 0, 0, 0.4);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0));
             border: none;
             border-bottom: 2px solid var(--gold);
             border-radius: 0;
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
             padding: 20px;
             margin-top: 20px;
         }
